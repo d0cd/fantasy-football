@@ -1,0 +1,10 @@
+{
+    "program": "ffdraftordering_v1_0_0.aleo",
+    "version": "0.0.0",
+    "description": "",
+    "development": {
+        "private_key": "APrivateKey1zkpJSFM6P24hxv1B5BwNEqbUeGpZri3stSP55cjHoj49mp1",
+        "address": "aleo1dfl3cl0ugxa888egvaqwsnqcwalcu5qd0swpjxwg9ztn3hwjmu8szp8u9e"
+    },
+    "license": "MIT"
+}
