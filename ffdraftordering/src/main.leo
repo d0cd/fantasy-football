@@ -1,5 +1,5 @@
 // The 'ffdraftordering' program.
-program ffdraftordering_v1_0_0.aleo {
+program ffdraftordering_v1_0_2.aleo {
     record Ticket {
         owner: address;
         player: address;
@@ -29,7 +29,7 @@ program ffdraftordering_v1_0_0.aleo {
 
     transition register(seed: field, tag: field) -> Ticket {
         return Ticket {
-            owner: aleo1xuzjjrckyyy6qw263l67c0mlmy7utf0pkzw6fgwyjuynju2vsvpqk74z7f, // TODO: Switch with league manager's address.
+            owner: aleo1aeh6kmlu6cl4naq7qfm0sykgww9y5wfwg6u3yj9733gnhyphnsgse3cceq, // TODO: Switch with league manager's address.
             player: self.caller,
             seed,
             tag,
@@ -86,6 +86,7 @@ program ffdraftordering_v1_0_0.aleo {
 
         // Shuffle the draft order.
         // Shuffling is performed using a Waksman network, initialized with random control bits.
+        // See https://inria.hal.science/inria-00072871/document for more information.
         let shuffled_order: DraftOrder = shuffle(order, bits);
 
         // Return the shuffled draft order.
@@ -166,36 +167,36 @@ program ffdraftordering_v1_0_0.aleo {
     // A helper function to check that the witnessed `bits` correspond to the given number.
     inline check_bits(number: u32, bits: U32Bits) {
         assert((bits.b0 ? 1u32 : 0u32) == (number & 1u32));
-        assert((bits.b1 ? 1u32 : 0u32) == (number & 2u32));
-        assert((bits.b2 ? 1u32 : 0u32) == (number & 4u32));
-        assert((bits.b3 ? 1u32 : 0u32) == (number & 8u32));
-        assert((bits.b4 ? 1u32 : 0u32) == (number & 16u32));
-        assert((bits.b5 ? 1u32 : 0u32) == (number & 32u32));
-        assert((bits.b6 ? 1u32 : 0u32) == (number & 64u32));
-        assert((bits.b7 ? 1u32 : 0u32) == (number & 128u32));
-        assert((bits.b8 ? 1u32 : 0u32) == (number & 256u32));
-        assert((bits.b9 ? 1u32 : 0u32) == (number & 512u32));
-        assert((bits.b10 ? 1u32 : 0u32) == (number & 1024u32));
-        assert((bits.b11 ? 1u32 : 0u32) == (number & 2048u32));
-        assert((bits.b12 ? 1u32 : 0u32) == (number & 4096u32));
-        assert((bits.b13 ? 1u32 : 0u32) == (number & 8192u32));
-        assert((bits.b14 ? 1u32 : 0u32) == (number & 16384u32));
-        assert((bits.b15 ? 1u32 : 0u32) == (number & 32768u32));
-        assert((bits.b16 ? 1u32 : 0u32) == (number & 65536u32));
-        assert((bits.b17 ? 1u32 : 0u32) == (number & 131072u32));
-        assert((bits.b18 ? 1u32 : 0u32) == (number & 262144u32));
-        assert((bits.b19 ? 1u32 : 0u32) == (number & 524288u32));
-        assert((bits.b20 ? 1u32 : 0u32) == (number & 1048576u32));
-        assert((bits.b21 ? 1u32 : 0u32) == (number & 2097152u32));
-        assert((bits.b22 ? 1u32 : 0u32) == (number & 4194304u32));
-        assert((bits.b23 ? 1u32 : 0u32) == (number & 8388608u32));
-        assert((bits.b24 ? 1u32 : 0u32) == (number & 16777216u32));
-        assert((bits.b25 ? 1u32 : 0u32) == (number & 33554432u32));
-        assert((bits.b26 ? 1u32 : 0u32) == (number & 67108864u32));
-        assert((bits.b27 ? 1u32 : 0u32) == (number & 134217728u32));
-        assert((bits.b28 ? 1u32 : 0u32) == (number & 268435456u32));
-        assert((bits.b29 ? 1u32 : 0u32) == (number & 536870912u32));
-        assert((bits.b30 ? 1u32 : 0u32) == (number & 1073741824u32));
-        assert((bits.b31 ? 1u32 : 0u32) == (number & 2147483648u32));
+        assert((bits.b1 ? 2u32 : 0u32) == (number & 2u32));
+        assert((bits.b2 ? 4u32 : 0u32) == (number & 4u32));
+        assert((bits.b3 ? 8u32 : 0u32) == (number & 8u32));
+        assert((bits.b4 ? 16u32 : 0u32) == (number & 16u32));
+        assert((bits.b5 ? 32u32 : 0u32) == (number & 32u32));
+        assert((bits.b6 ? 64u32 : 0u32) == (number & 64u32));
+        assert((bits.b7 ? 128u32 : 0u32) == (number & 128u32));
+        assert((bits.b8 ? 256u32 : 0u32) == (number & 256u32));
+        assert((bits.b9 ? 512u32 : 0u32) == (number & 512u32));
+        assert((bits.b10 ? 1024u32 : 0u32) == (number & 1024u32));
+        assert((bits.b11 ? 2048u32 : 0u32) == (number & 2048u32));
+        assert((bits.b12 ? 4096u32 : 0u32) == (number & 4096u32));
+        assert((bits.b13 ? 8192u32 : 0u32) == (number & 8192u32));
+        assert((bits.b14 ? 16384u32 : 0u32) == (number & 16384u32));
+        assert((bits.b15 ? 32768u32 : 0u32) == (number & 32768u32));
+        assert((bits.b16 ? 65536u32 : 0u32) == (number & 65536u32));
+        assert((bits.b17 ? 131072u32 : 0u32) == (number & 131072u32));
+        assert((bits.b18 ? 262144u32 : 0u32) == (number & 262144u32));
+        assert((bits.b19 ? 524288u32 : 0u32) == (number & 524288u32));
+        assert((bits.b20 ? 1048576u32 : 0u32) == (number & 1048576u32));
+        assert((bits.b21 ? 2097152u32 : 0u32) == (number & 2097152u32));
+        assert((bits.b22 ? 4194304u32 : 0u32) == (number & 4194304u32));
+        assert((bits.b23 ? 8388608u32 : 0u32) == (number & 8388608u32));
+        assert((bits.b24 ? 16777216u32 : 0u32) == (number & 16777216u32));
+        assert((bits.b25 ? 33554432u32 : 0u32) == (number & 33554432u32));
+        assert((bits.b26 ? 67108864u32 : 0u32) == (number & 67108864u32));
+        assert((bits.b27 ? 134217728u32 : 0u32) == (number & 134217728u32));
+        assert((bits.b28 ? 268435456u32 : 0u32) == (number & 268435456u32));
+        assert((bits.b29 ? 536870912u32 : 0u32) == (number & 536870912u32));
+        assert((bits.b30 ? 1073741824u32 : 0u32) == (number & 1073741824u32));
+        assert((bits.b31 ? 2147483648u32 : 0u32) == (number & 2147483648u32));
     }
 }
